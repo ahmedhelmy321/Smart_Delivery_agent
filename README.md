@@ -1,34 +1,43 @@
 # Smart_Delivery_agent
 An autonomous delivery agent framework trained using Reinforcement Learning (Q-Learning &amp; Double DQN) in a custom grid-world environment built with PyTorch
-🛠️ Getting Started
-Prerequisites
-Make sure you have Python 3.8+ and PyTorch installed along with standard scientific computation packages:
+# 📦 Smart Autonomous Delivery Agent Framework
 
-Bash
-pip install torch numpy matplotlib imageio
-Installation
-Clone the repository:
+An autonomous delivery agent framework trained using **Reinforcement Learning (Q-Learning & Double DQN)** in a custom grid-world environment built with **PyTorch**. The agent learns optimal pathfinding and delivery strategies while avoiding dynamic obstacles and constraints.
 
-Bash
-git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/yourusername/your-repo-name.git)
-cd your-repo-name
-Run the main training lifecycle (Trains Q-Learning & DDQN, then generates tracking gifs):
+---
 
-Bash
-python run_all.py
-Run the BFS pathfinding verification:
+## 🚀 Visualizing the Training
 
-Bash
-python main.py
-📊 Evaluation Metrics
-The framework records metrics across training iterations. Below is a baseline representation of sample execution paths and training trends:
+Here is a glimpse of the agent evaluating its pathfinding policy in the custom grid environment:
 
-📜 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-"""
+![Delivery Agent Evaluation](q_learning_episode.gif)
 
-with open("README.md", "w", encoding="utf-8") as f:
-f.write(readme_content)
+---
 
-print("README.md written successfully.")
+## ✨ Features
 
+- **Custom Grid-World Environment**: A discrete delivery mapping space featuring static obstacles, compound constraints, and variable delivery targets.
+- **Dual Algorithm Support**: 
+  - **Classical Tabular Q-Learning**: For baseline testing and exact tabular state-space mapping.
+  - **Deep Double DQN (DDQN)**: Leveraging a Convolutional Neural Network (CNN) to handle dense spatial feature maps via PyTorch.
+- **Search-Based Baseline**: Included Breadth-First Search (BFS) pathfinding agent inside `test_agent.py` to compare classical shortest paths against RL agent rewards.
+- **Reproducibility**: Global seed management for consistent environment initialization and weight metrics.
+- **Automated Visualization**: Built-in wrappers to render episodes and export environment loops directly into `.gif` animations.
+
+---
+
+## 📂 Repository Structure
+
+```bash
+├── agents/
+│   ├── Q_Learning_agent.py    # Tabular Q-Learning logic
+│   └── double_dqn_agent.py    # Deep Double DQN architecture with Replay Buffer
+├── env/
+│   └── delivery_env.py        # Custom Grid-World environment implementation
+├── models/
+│   └── cnn_q_network.py       # PyTorch CNN model configuration
+├── run_all.py                 # Pipeline to execute both Q-Learning and DDQN training
+├── main.py                    # Script to test and evaluate BFS pathfinding performance
+├── test_agent.py              # BFS baseline algorithm implementation
+├── Figure_1.png               # Training analytics / performance graphs
+└── q_learning_episode.gif     # Rendered evaluation simulation
